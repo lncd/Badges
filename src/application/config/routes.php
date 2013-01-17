@@ -39,11 +39,6 @@
 */
 
 $route['default_controller'] = "landing_page";
-$route['404_override'] = '';
-$route['assignment/(:num)'] = "assignment/index/$1";
-$route['criterion_grid/(:num)'] = "criterion_grid/index/$1";
-$route['criterion_grid/create/(:num)'] = "criterion_grid/create_crg_for_assignment/$1";
-$route['module/(:num)'] = "module/index/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

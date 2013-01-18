@@ -11,6 +11,31 @@
 	<div class="row">
 		<section class="span12" id="badges_waiting">
 			<h2>Badges to be Collected</h2>
+			<div style="min-height: 100px">
+			<?php if((isset($unawarded)) AND (sizeof($unawarded) > 0)): ?>
+			<table class="table table-striped table-bordered table-condensed">
+			<?php foreach($unawarded as $a_badge): ?>
+			<tr style="width: 580px !important">
+				<td style="width: 80px; text-align: center !important"><img src="<?php echo site_url() . 'assets/uploads/' . $a_badge->badge->badge_image;?>" style="width: 60px; height: 60px; margin: 10px"></td>
+				<td style="width: 400px"><span class="badge_name"><h4><?php echo $a_badge->badge->badge_name;?></h4></span>
+					<p><?php echo $a_badge->badge->description;?></p>
+					<p>Criteria:</p>
+					<ul>
+						<?php foreach($a_badge->objectives as $objective): ?>
+							<li><?php echo $objective->objective_text; ?></li>
+						<?php endforeach; ?>
+					</ul>
+				</td>
+				<td style="width: 100px; vertical-align: middle; text-align: center">
+					<p><a href="claim?badge=<?php echo $a_badge->badge->badge_id;?>">Claim This Badge</a></p>
+					<p><a href="#">Remove Badge</a></p>
+					<p><a href="#">View Badge Details</a></p>
+				</td>
+				</tr>
+			<?php endforeach;?>
+			</table>
+			<?php endif; ?>
+			</div>
 		</section>
 
 		<section class="span12" id="badges_waiting">
@@ -22,7 +47,3 @@
 		</section>
 	</div>
 </div>
-
-<?php echo '<pre>';
-print_r($completed);
-echo '</pre>'; ?>

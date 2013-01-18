@@ -33,7 +33,8 @@ class Home extends CI_Controller {
 	{
 		$this->load->model('user_model');
 		$data['user'] = $this->user_model->get_by_id($this->session->userdata('user_id'));
-		$data['completed'] = $this->user_model->get_user_completed_badges($this->session->userdata('user_id'));
+		$data['unawarded'] = $this->user_model->get_user_unawarded_badges($this->session->userdata('user_id'));
+		$data['awarded'] = $this->user_model->get_user_awarded_badges($this->session->userdata('user_id'));
 		$this->load->view('includes/header');
 		$this->load->view('home', $data);
 		$this->load->view('includes/footer');

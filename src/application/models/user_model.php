@@ -57,6 +57,55 @@ class User_model extends CI_Model {
         return $returning;
     }
 
+    function get_user_partial_badges($id)
+    {
+        //Get all objectives completed by the user
+        $objs_com = new Objective_complete();
+        $objs_com->where('user_id', $id)->get();
+
+        $obj_id_array = array();
+
+        //Get array of objective ids
+        foreach($objs_com as $obj_com)
+        {
+            $obj_id_array[] = $obj_com->objective_id;
+        }
+
+        if(count($obj_id_array) > 0)
+        {
+            //Get all badges that are associated with these objective ids
+            $query = $this->db
+                            ->select()
+                            ->where_in('badge_objectives.objective_id', $obj_id_array)
+                            ->join('badge_objectives', 'badges.id = badge_objectives.badge_id')
+                            ->group_by('badges.id')
+                            ->get('badges');
+
+            $associated_badges = array();
+
+
+            foreach($query->result() as $result)
+            {
+                $badges_earned = new Badge_earned();
+                $badges_earned->where('user_id', $id);
+                $badges_earned->where('badge_id', $result->badge_id);
+
+                $count = $badges_earned->count();
+
+                if($count === 0)
+                {
+                    $associated_badges[] = $this->get_badge_data($result->id);
+                }
+                unset($badges_earned);
+            }
+            return $associated_badges;
+        }
+        else
+        {
+            return array();
+        }
+    }
+
     function get_badge_data($id)
     {
         $badge = new Badge();

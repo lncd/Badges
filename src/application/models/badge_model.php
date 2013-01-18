@@ -28,5 +28,15 @@ class Badge_model extends CI_Model {
         }
     	return $temp;
     }
+
+    function get_instance($user_id, $badge_id)
+    {
+        $badge_earned = new Badge_earned();
+        $badge_earned->where('user_id', $user_id);
+        $badge_earned->where('badge_id', $badge_id);
+        $badge_earned->get();
+
+        return $badge_earned->stored;
+    }
 }
 ?>

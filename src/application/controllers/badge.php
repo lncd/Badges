@@ -31,6 +31,7 @@ class Badge extends CI_Controller {
 	*/
 	public function index()
 	{
+		echo 'index';
 	}
 
 	/**
@@ -41,13 +42,14 @@ class Badge extends CI_Controller {
 	*/
 	public function claim($id)
 	{
-		$this->load->model('core/badges_model', 'badges_model', TRUE);
+
+		$this->load->model('badge_model');
 		
-		$data['assertion'] = $this->badges_model->get_badge_instance($this->session->userdata('person_id'), $this->input->get('badge'));
-		
-		$data['assertion'] = $data['assertion']['assertion'];
-		if($data['assertion'] !== 0)
+		$data['badge'] = $this->badge_model->get_instance($this->session->userdata('user_id'), $id);
+		if($data['badge'])
 		{
+			echo 'hi, this is inside the loop!';
+			die();
 			$data['badge_id'] = $this->input->get('badge');
 			$badge_return = $this->badges_model->get_badge($data['badge_id']);
 

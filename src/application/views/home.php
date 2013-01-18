@@ -3,7 +3,7 @@
 		<section>
 			<h1>
 				Badge Profile
-				<small>User Name</small>
+				<small><?php echo $user->fname . ' ' . $user->lname; ?></small>
 			</h1>
 		</section>
 	</div>
@@ -22,3 +22,7 @@
 		</section>
 	</div>
 </div>
+
+<?php echo '<pre>';
+print_r($completed);
+echo '</pre>'; ?>

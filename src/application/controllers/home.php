@@ -31,8 +31,11 @@ class Home extends CI_Controller {
 	*/
 	public function index()
 	{
+		$this->load->model('user_model');
+		$data['user'] = $this->user_model->get_by_id($this->session->userdata('user_id'));
+		$data['completed'] = $this->user_model->get_user_completed_badges($this->session->userdata('user_id'));
 		$this->load->view('includes/header');
-		$this->load->view('home');
+		$this->load->view('home', $data);
 		$this->load->view('includes/footer');
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 /**
-* Objective
+* Badge_objective
 *
 * PHP Version 5
 * 
@@ -13,7 +13,7 @@
 */
 
 /**
-* Objective
+* Badge_objective
 *
 * @category Badges
 * @package  Badges
@@ -21,14 +21,14 @@
 * @license  GNU Affero General Public License 3.0
 * @link     coursedata.blogs.lincoln.ac.uk
 */
-class Objective extends DataMapper {
+class Badge_objective extends DataMapper {
 
 	/**
 	* Name of the table that the model uses.
 	*
 	* @var string
 	*/
-	var $table = 'objectives';
+	var $table = 'badge_objectives';
 
 	/**
 	* Array containing related elements.
@@ -36,9 +36,8 @@ class Objective extends DataMapper {
 	* @var array
 	*/
 	var $has_many = array(
-		'objective_complete' => array(),
-		'badge_objective' => array(),
-		'objective_type' => array()
+		'badge' => array(),
+		'objective' => array()	
 	);
 }
 

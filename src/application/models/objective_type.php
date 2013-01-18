@@ -1,6 +1,6 @@
 <?php
 /**
-* Objective
+* User
 *
 * PHP Version 5
 * 
@@ -13,7 +13,7 @@
 */
 
 /**
-* Objective
+* User
 *
 * @category Badges
 * @package  Badges
@@ -21,14 +21,14 @@
 * @license  GNU Affero General Public License 3.0
 * @link     coursedata.blogs.lincoln.ac.uk
 */
-class Objective extends DataMapper {
+class Objective_type extends DataMapper {
 
 	/**
 	* Name of the table that the model uses.
 	*
 	* @var string
 	*/
-	var $table = 'objectives';
+	var $table = 'objective_types';
 
 	/**
 	* Array containing related elements.
@@ -36,11 +36,9 @@ class Objective extends DataMapper {
 	* @var array
 	*/
 	var $has_many = array(
-		'objective_complete' => array(),
-		'badge_objective' => array(),
-		'objective_type' => array()
+		'objective' => array()
 	);
 }
 
 // End of file criterion_reference_grid.php
-// Location: ./models/objective.php
+// Location: ./models/objective_type.php

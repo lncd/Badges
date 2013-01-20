@@ -51,5 +51,5 @@ class Badge extends DataMapper {
 	);
 }
 
-// End of file criterion_reference_grid.php
-// Location: ./models/objective.php
+// End of file badge.php
+// Location: ./models/badge.php

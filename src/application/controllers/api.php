@@ -109,5 +109,36 @@ class Api extends CI_Controller {
 
 		echo json_encode($return);
 	}
+
+	/**
+	* Create an objective type
+	*
+	* @return Nothing
+	* @access Public
+	*/
+	public function create_objective_type()
+	{
+		$return = new stdClass();
+		if($this->input->get('text'))
+		{
+			$obj_type = new Objective_type();
+			$obj_type->objective_type = $this->input->get('text');
+			$obj_type->save();
+
+			$return->code = 201;
+			$return->error = NULL;
+			$return->message = "Objective type added successfully.";
+			$return->data->object_id = $obj_type->id;	
+		}
+		else
+		{
+			$return->code = 400;
+			$return->error = "Not all required parameters have been declared.";
+			$return->message = "The following parameters are required: text.";
+			$return->data = NULL;
+		}
+
+		echo json_encode($return);
+	}
 }
 ?>

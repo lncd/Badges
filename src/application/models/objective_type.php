@@ -1,6 +1,6 @@
 <?php
 /**
-* User
+* Objective_type
 *
 * PHP Version 5
 * 
@@ -13,7 +13,7 @@
 */
 
 /**
-* User
+* Objective_type
 *
 * @category Badges
 * @package  Badges
@@ -40,5 +40,5 @@ class Objective_type extends DataMapper {
 	);
 }
 
-// End of file criterion_reference_grid.php
+// End of file objective_type.php
 // Location: ./models/objective_type.php

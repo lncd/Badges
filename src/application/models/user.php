@@ -41,5 +41,5 @@ class User extends DataMapper {
 	);
 }
 
-// End of file criterion_reference_grid.php
+// End of file user.php
 // Location: ./models/user.php

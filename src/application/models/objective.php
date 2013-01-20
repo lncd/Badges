@@ -42,5 +42,5 @@ class Objective extends DataMapper {
 	);
 }
 
-// End of file criterion_reference_grid.php
+// End of file objective.php
 // Location: ./models/objective.php

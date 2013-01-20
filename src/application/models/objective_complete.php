@@ -1,6 +1,6 @@
 <?php
 /**
-* Objectives_complete
+* Objective_complete
 *
 * PHP Version 5
 * 
@@ -13,7 +13,7 @@
 */
 
 /**
-* Objectives_complete
+* Objective_complete
 *
 * @category Badges
 * @package  Badges
@@ -41,5 +41,5 @@ class Objective_complete extends DataMapper {
 	);
 }
 
-// End of file criterion_reference_grid.php
+// End of file objective_complete.php
 // Location: ./models/objective_complete.php

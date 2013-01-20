@@ -49,15 +49,61 @@ class Api extends CI_Controller {
 	public function create_badge()
 	{
 		$return = new stdClass();
-		if(($this->input->get('title')) && ($this->input->get('desc')) && ($this->input->get('img')))
+		if(($this->input->get('title')) && ($this->input->get('desc')) && ($this->input->get('img')) && ($this->input->get('source')))
 		{
+			$badge = new Badge();
+			$badge->badge_name = $this->input->get('title');
+			$badge->description = $this->input->get('desc');
+			$badge->badge_source = (int) $this->input->get('source');
+			$badge->badge_image = $this->input->get('img');
 
+			$badge->save();
+
+			$returning_id = $badge->id;
+
+			$return->code = 201;
+			$return->error = NULL;
+			$return->message = 'Badge created successfully.';
+			$return->data->object_id = $returning_id;
 		}
 		else
 		{
 			$return->code = 400;
 			$return->error = "Not all required parameters have been declared";
-			$return->message = "The following parameters are required: title, desc and img.";
+			$return->message = "The following parameters are required: title, desc, img and source.";
+			$return->data = NULL;
+		}
+
+		echo json_encode($return);
+	}
+
+	/**
+	* Create an objective
+	*
+	* @return Nothing
+	* @access Public
+	*/
+	public function create_objective()
+	{
+		$return = new stdClass();
+		if(($this->input->get('text')) && ($this->input->get('type')))
+		{
+			
+			$objective = new Objective();
+			$objective->objective_text = $this->input->get('text');
+			$objective->objective_type_id = (int) $this->input->get('type');
+			$objective->save();
+
+			$return->code = 201;
+			$return->error = NULL;
+			$return->message = 'Objective created successfully.';
+			$return->data->object_id = $objective->id;
+		}
+		else
+		{
+			$return->code = 400;
+			$return->error = "Not all required parameters have been declared";
+			$return->message = "The following parameters are required: text, type.";
 			$return->data = NULL;
 		}
 

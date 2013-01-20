@@ -140,5 +140,52 @@ class Api extends CI_Controller {
 
 		echo json_encode($return);
 	}
+
+	/**
+	* Assign obj to badge
+	*
+	* @return Nothing
+	* @access Public
+	*/
+	public function add_badge_objective()
+	{
+		$return = new stdClass();
+		
+		if(($this->input->get('badge')) && ($this->input->get('objective')))
+		{
+			$badge_obj = new Badge_objective();
+			$badge_obj->where('badge_id', (int) $this->input->get('badge'));
+			$badge_obj->where('objective_id', (int) $this->input->get('objective'));
+			$badge_obj->get();
+
+			if($badge_obj->badge_id)
+			{
+				$return->code = 409;
+				$return->error = "Combination already exists. Cannot save duplicate data.";
+				$return->message = "The combination of badge and objective already exists in the database.":
+				$return->data = NULL;
+			}
+			else
+			{
+				$badge_obj->badge_id = (int) $this->input->get('badge');
+				$badge_obj->objective_id = (int) $this->input->get('objective'):
+				$badge_obj->save();
+
+				$return->code = 201;
+				$return->error = NULL;
+				$return->message = "Objective added to badge.";
+				$return->data = NULL;
+			}
+		}
+		else
+		{
+			$return->code = 400;
+			$return->error = "Not all required parameters have been declared";
+			$return->message = "The following parameters are required: badge, objective.";
+			$return->data = NULL;
+		}
+
+		echo json_encode($return);
+	}
 }
 ?>

@@ -41,4 +41,6 @@ class Home extends CI_Controller {
 		$this->load->view('includes/footer');
 	}
 }
-?>
+
+// End of file home.php
+// Location: ./controllers/home.php

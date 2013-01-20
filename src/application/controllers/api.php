@@ -310,4 +310,6 @@ class Api extends CI_Controller {
 		}
 	}
 }
-?>
+
+// End of file api.php
+// Location: ./controllers/api.php

@@ -162,13 +162,13 @@ class Api extends CI_Controller {
 			{
 				$return->code = 409;
 				$return->error = "Combination already exists. Cannot save duplicate data.";
-				$return->message = "The combination of badge and objective already exists in the database.":
+				$return->message = "The combination of badge and objective already exists in the database.";
 				$return->data = NULL;
 			}
 			else
 			{
 				$badge_obj->badge_id = (int) $this->input->get('badge');
-				$badge_obj->objective_id = (int) $this->input->get('objective'):
+				$badge_obj->objective_id = (int) $this->input->get('objective');
 				$badge_obj->save();
 
 				$return->code = 201;
@@ -182,6 +182,52 @@ class Api extends CI_Controller {
 			$return->code = 400;
 			$return->error = "Not all required parameters have been declared";
 			$return->message = "The following parameters are required: badge, objective.";
+			$return->data = NULL;
+		}
+
+		echo json_encode($return);
+	}
+
+	/**
+	* Mark objective as complete for a user.
+	*
+	* @access Public
+	* @return Nothing
+	*/
+	public function mark_objective_complete()
+	{
+		$return = new stdClass();
+		if(($this->input->get('user')) && ($this->input->get('objective')))
+		{
+			$obj_complete = new Objective_complete();
+			$obj_complete->where('user_id', (int) $this->input->get('user'));
+			$obj_complete->where('objective_id', (int) $this->input->get('objective'));
+			$obj_complete->get();
+
+			if($obj_complete->id)
+			{
+				$return->code = 409;
+				$return->error = "Combination already exists. Cannot save duplicate data.";
+				$return->message = "The combination of user and objective already exists in the database.";
+				$return->data = NULL;
+			}
+			else
+			{
+				$obj_complete->user_id = (int) $this->input->get('user');
+				$obj_complete->objective_id = (int) $this->input->get('objective');
+				$obj_complete->save();
+
+				$return->code = 201;
+				$return->error = NULL;
+				$return->message = "Objective marked as complete for specified user.";
+				$return->data = NULL;
+			}
+		}
+		else
+		{
+			$return->code = 400;
+			$return->error = "Not all required parameters have been declared";
+			$return->message = "The following parameters are required: user, objective.";
 			$return->data = NULL;
 		}
 

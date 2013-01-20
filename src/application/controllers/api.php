@@ -233,5 +233,81 @@ class Api extends CI_Controller {
 
 		echo json_encode($return);
 	}
+
+	/**
+	* Create an assertion
+	*
+	* @access Public
+	* @return Nothing
+	*/
+	public function create_assertion()
+	{
+		$return = new stdClass();
+		if(($this->input->get('user')) && ($this->input->get('badge')))
+		{
+			//CHeck user can be awarded the badge
+			$check_earned = new Badge_earned();
+			$check_earned->where('user_id', (int) $this->input->get('user'));
+			$check_earned->where('badge_id', (int) $this->input->get('badge'));
+			$check_earned->get();
+			
+			if($check_earned->id)
+			{
+				$badge = new Badge();
+				$badge->where('id', (int) $this->input->get('badge'))->get();
+
+				$user = new User();
+				$user->where('id', (int) $this->input->get('user'))->get();
+
+				$data_array = array(
+						'recipient' => $user->email_address,
+						'issued_on' => date('Y-m-d', time()),
+						'badge' => array(
+								'version' => '0.1',
+								'name' => $badge->badge_name,
+								'image' => $badge->badge_image,
+								'description' => $badge->description,
+								'criteria' => $badge->criteria_uri,
+								'issuer' => array(
+										'origin' => 'http://lncd.lincoln.ac.uk',
+										'name' => 'LNCD at the Uninversity of Lincoln'
+									)
+							)
+					);
+
+				$salt = substr(time(), 3, 6);
+
+				$filename = $user->person_id . $salt . $badge->id . '.json';
+
+				//Create the assertion file
+				echo site_url() . 'assets/assertions/' . $filename;
+				
+				file_put_contents('assets/assertions/' . $filename, json_encode($data_array)) or die('Error');
+
+				//Bake the badge
+				$bake_url = 'http://beta.openbadges.org/baker?assertion=' . site_url() . 'assets/assertions/' . $filename;
+				$image_data = base64_encode(file_get_contents($bake_url));
+
+				//Update the record in the database
+				$check_earned->badge_data = $image_data;
+				$check_earned->assertion_uri = $filename;
+				$check_earned->save();
+			}
+			else
+			{
+				$return->code = 400;
+				$return->error = "User has not completedt the specified badge.";
+				$return->message = "Cannot create an assertion for this badge.";
+				$return->data = NULL;
+			}
+		}
+		else
+		{
+			$return->code = 400;
+			$return->error = "Not all required parameters have been declared";
+			$return->message = "The following parameters are required: user, objective.";
+			$return->data = NULL;
+		}
+	}
 }
 ?>

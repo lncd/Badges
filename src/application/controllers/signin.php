@@ -43,9 +43,10 @@ class Signin extends CI_Controller {
 	
 		$response = json_decode($query_response);
 
-		echo '<pre>';
-		print_r($response);
-		echo '</pre>';
+		$this->load->model('user_model');
+		$this->user_model->complete_signin($response->access_token);
+		
+		redirect(site_url() . 'home', 'location');
 	}
 
 	/**

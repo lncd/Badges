@@ -118,6 +118,18 @@ class Badge_model extends CI_Model
 		$badge->where('id', (int) $badge_earned->badge_id)->get();
 		$returning->badge = $badge->stored;
 
+		//Get all objectives
+		$badge_objectives = new Badge_objective();
+		$badge_objectives->where('badge_id', (int) $badge->id)->get();
+
+		foreach($badge_objectives as $badge_obj)
+		{
+			$objective = new Objective();
+			$objective->where('id', (int) $badge_obj->objective_id)->get();
+
+			$returning->objectives[] = $objective->stored;
+		}
+
 		return $returning;
 	}
 }

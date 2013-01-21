@@ -32,8 +32,6 @@
 				</td>
 				<td style="width: 100px; vertical-align: middle; text-align: center">
 					<span onClick="claim_badge()" class="btn btn-small btn-success">Send to Backpack</span>
-					<p><a href="#">Remove Badge</a></p>
-					<p><a href="<?php echo site_url(); ?>badge/<?php echo $a_badge->badge->id;?>">View Badge Details</a></p>
 				</td>
 				</tr>
 			</table>

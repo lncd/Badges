@@ -193,6 +193,18 @@ class User_model extends CI_Model
 			$temp->objectives[] = $objective->stored;
 			unset($objective);
 		}
+
+		//Check if badge has been earned by the current user, if so append.
+		$badge_earned = new Badge_earned();
+		$badge_earned->where('user_id', $this->session->userdata('user_id'));
+		$badge_earned->where('badge_id', $id);
+		$badge_earned->get();
+
+		if($badge_earned->id)
+		{
+			$temp->badge_earned = $badge_earned->stored;
+		}
+		
 		return $temp;
 	}
 }

@@ -280,12 +280,11 @@ class Api extends CI_Controller {
 				$filename = $user->person_id . $salt . $badge->id . '.json';
 
 				//Create the assertion file
-				echo site_url() . 'assets/assertions/' . $filename;
-				
 				file_put_contents('assets/assertions/' . $filename, json_encode($data_array)) or die('Error');
 
 				//Bake the badge
 				$bake_url = 'http://beta.openbadges.org/baker?assertion=' . site_url() . 'assets/assertions/' . $filename;
+
 				$image_data = base64_encode(file_get_contents($bake_url));
 
 				//Update the record in the database

@@ -62,7 +62,20 @@ class Badge_model extends CI_Model
 			$temp->objectives[] = $objective->stored;
 			unset($objective);
 		}
+
+		//Check if badge has been earned by the current user, if so append.
+		$badge_earned = new Badge_earned();
+		$badge_earned->where('user_id', $this->session->userdata('user_id'));
+		$badge_earned->where('badge_id', $id);
+		$badge_earned->get();
+
+		if($badge_earned->id)
+		{
+			$temp->badge_earned = $badge_earned->stored;
+		}
 		return $temp;
+
+
 	}
 
 	/**
@@ -82,6 +95,30 @@ class Badge_model extends CI_Model
 		$badge_earned->get();
 
 		return $badge_earned->stored;
+	}
+
+	/**
+	* Get badge details by earned id
+	*
+	* @param int $earned_id The ID of the badge earned record
+	*
+	* @access Public
+	* @return Object representing badge info
+	*/
+	public function get_earned_badge($earned_id)
+	{
+		$returning = new stdClass();
+
+		$badge_earned = new Badge_earned();
+		$badge_earned->where('id', (int) $earned_id)->get();
+		$returning->instance = $badge_earned->stored;
+
+		//Get general badge info
+		$badge = new Badge();
+		$badge->where('id', (int) $badge_earned->badge_id)->get();
+		$returning->badge = $badge->stored;
+
+		return $returning;
 	}
 }
 

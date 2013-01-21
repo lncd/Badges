@@ -31,7 +31,12 @@ class Claim extends CI_Controller {
 	*/
 	public function index($earned_id)
 	{
-		echo $earned_id;
+		$this->load->model('badge_model');
+		$data['badge'] = $this->badge_model->get_earned_badge($earned_id);
+		$this->load->view('includes/header');
+		$this->load->view('claim', $data);
+		$this->load->view('includes/footer');
+		
 	}
 }
 

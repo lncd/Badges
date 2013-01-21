@@ -27,9 +27,9 @@
 					</ul>
 				</td>
 				<td style="width: 100px; vertical-align: middle; text-align: center">
-					<p><a href="claim?badge=<?php echo $a_badge->badge->badge_id;?>">Claim This Badge</a></p>
+					<p><a href="<?php echo site_url(); ?>claim/<?php echo $a_badge->badge_earned->id;?>">Claim This Badge</a></p>
 					<p><a href="#">Remove Badge</a></p>
-					<p><a href="#">View Badge Details</a></p>
+					<p><a href="<?php echo site_url(); ?>badge/<?php echo $a_badge->badge->id;?>">View Badge Details</a></p>
 				</td>
 				</tr>
 			<?php endforeach;?>

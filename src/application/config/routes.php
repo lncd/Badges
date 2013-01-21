@@ -39,6 +39,8 @@
 */
 
 $route['default_controller'] = "landing_page";
+$route['claim/(:num)'] = "claim/index/$1";
+$route['badge/(:num)'] = "badge/index/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

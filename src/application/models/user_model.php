@@ -207,6 +207,19 @@ class User_model extends CI_Model
 		
 		return $temp;
 	}
+
+	/**
+	* Complete signin process for user
+	*
+	* @param string $access_token Access token for the user signing in
+	*
+	* @access Public
+	* @return Success
+	*/
+	public function complete_signin($access_token)
+	{
+		//Get user, update details, get id, signin
+	}
 }
 
 // End of file user_model.php

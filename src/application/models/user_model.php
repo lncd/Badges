@@ -218,7 +218,25 @@ class User_model extends CI_Model
 	*/
 	public function complete_signin($access_token)
 	{
-		//Get user, update details, get id, signin
+		//Get data from Nucleus
+		$user_profile = json_decode(file_get_contents('https://nucleus-proxy.online.lincoln.ac.uk/v1/people/user.json?access_token=' . $access_token . '&scope=user.basic'));
+
+		//Get user (if exists)
+		$user = new User();
+		$user->where('oauth_token', $access_token)->get();
+
+		//Set user data
+		$user->oauth_token = $access_token;
+		$user->person_id = $user_profile->results[0]->id;
+		$user->fname = $user_profile->results[0]->givenname;
+		$user->lname = $user_profile->results[0]->surname;
+		$user->email_address = $user_profile->results[0]->email;
+
+		$user->save();
+
+		$this->session->set_userdata('user_id', $user->id);
+
+		return TRUE;
 	}
 }
 

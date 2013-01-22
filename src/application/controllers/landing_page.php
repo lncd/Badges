@@ -48,4 +48,6 @@ class Landing_page extends CI_Controller {
 		redirect(site_url(), 'home');
 	}
 }
-?>
+
+// End of file landing_page.php
+// Location: ./controllers/landinge_page.php

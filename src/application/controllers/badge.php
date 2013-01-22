@@ -37,6 +37,8 @@ class Badge extends CI_Controller {
 	/**
 	* Claim a badge
 	*
+	* @param int $id ID of the badge to claim
+	*
 	* @return Nothing
 	* @access Public
 	*/
@@ -69,4 +71,6 @@ class Badge extends CI_Controller {
 		}
 	}
 }
-?>
+
+// End of file badge.php
+// Location: ./controllers/badge.php

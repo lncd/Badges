@@ -26,6 +26,8 @@ class Claim extends CI_Controller {
 	/**
 	* Index function
 	*
+	* @param int $earned_id ID of the badge earned
+	*
 	* @return Nothing
 	* @access Public
 	*/

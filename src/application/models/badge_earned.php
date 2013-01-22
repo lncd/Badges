@@ -42,4 +42,4 @@ class Badge_earned extends DataMapper {
 }
 
 // End of file badge_earned.php
-// Location: ./models/badged_earned.php
+// Location: ./models/badge_earned.php

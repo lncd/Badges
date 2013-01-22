@@ -2,7 +2,7 @@
 <script language="Javascript">
 	function claim_badge()
 	{
-		OpenBadges.issue(['<?php echo site_url() . 'assets/assertions/' . $badge->instance->assertion_uri;?>'], function(errors, successes) { window.location = "<?php echo site_url();?>/claim/complete/<?php echo $badge->instance->id;?>"; });
+		OpenBadges.issue(['<?php echo site_url() . 'assets/assertions/' . $badge->instance->assertion_uri;?>'], function(errors, successes) { window.location = "<?php echo site_url();?>claim/complete/<?php echo $badge->instance->id;?>"; });
 	}
 </script>
 

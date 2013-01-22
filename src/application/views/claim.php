@@ -20,7 +20,7 @@
 		<section class="span12" id="badge_summary">
 			<table class="table table-striped table-bordered table-condensed">
 			<tr style="width: 580px !important">
-				<td style="width: 80px; text-align: center !important"><img src="<?php echo site_url() . 'assets/uploads/' . $badge->badge->badge_image;?>" style="width: 60px; height: 60px; margin: 10px"></td>
+				<td style="width: 80px; text-align: center !important"><img src="<?php echo $badge->badge->badge_image;?>" style="width: 60px; height: 60px; margin: 10px"></td>
 				<td style="width: 400px"><span class="badge_name"><h4><?php echo $a_badge->badge->badge_name;?></h4></span>
 					<p><?php echo $badge->badge->description;?></p>
 					<p>Criteria:</p>

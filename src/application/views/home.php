@@ -21,7 +21,7 @@
 			<table class="table table-striped table-bordered table-condensed">
 			<?php foreach($unawarded as $a_badge): ?>
 			<tr style="width: 580px !important">
-				<td style="width: 80px; text-align: center !important"><img src="<?php echo site_url() . 'assets/uploads/' . $a_badge->badge->badge_image;?>" style="width: 60px; height: 60px; margin: 10px"></td>
+				<td style="width: 80px; text-align: center !important"><img src="<?php echo $a_badge->badge->badge_image;?>" style="width: 60px; height: 60px; margin: 10px"></td>
 				<td style="width: 400px"><span class="badge_name"><h4><?php echo $a_badge->badge->badge_name;?></h4></span>
 					<p><?php echo $a_badge->badge->description;?></p>
 					<p>Criteria:</p>
@@ -50,7 +50,7 @@
 			<table class="table table-striped table-bordered table-condensed">
 			<?php foreach($partial as $a_badge): ?>
 			<tr style="width: 580px !important">
-				<td style="width: 80px; text-align: center !important"><img src="<?php echo site_url() . 'assets/uploads/' . $a_badge->badge->badge_image;?>" style="width: 60px; height: 60px; margin: 10px"></td>
+				<td style="width: 80px; text-align: center !important"><img src="<?php echo $a_badge->badge->badge_image;?>" style="width: 60px; height: 60px; margin: 10px"></td>
 				<td style="width: 400px"><span class="badge_name"><h4><?php echo $a_badge->badge->badge_name;?></h4></span>
 					<p><?php echo $a_badge->badge->description;?></p>
 					<p>Criteria:</p>
@@ -73,7 +73,7 @@
 			<table class="table table-striped table-bordered table-condensed">
 			<?php foreach($awarded as $a_badge): ?>
 			<tr style="width: 580px !important">
-				<td style="width: 80px; text-align: center !important"><img src="<?php echo site_url() . 'assets/uploads/' . $a_badge->badge->badge_image;?>" style="width: 60px; height: 60px; margin: 10px"></td>
+				<td style="width: 80px; text-align: center !important"><img src="<?php echo $a_badge->badge->badge_image;?>" style="width: 60px; height: 60px; margin: 10px"></td>
 				<td style="width: 500px"><span class="badge_name"><h4><?php echo $a_badge->badge->badge_name;?></h4></span>
 					<p><?php echo $a_badge->badge->description;?></p>
 					<p>Criteria:</p>

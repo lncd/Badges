@@ -59,7 +59,7 @@
 							<?php if($this->session->userdata('user_id')): ?>
 								<li><a href="<?php echo site_url();?>signin/signout">Logout</a></li>
 							<?php else: ?>
-								<li><a href="https://sso.lincoln.ac.uk/oauth?response_type=code&client_id=Q2yb5BchO98w9jYaWw4862BBG6zW4jKY&redirect_uri=http://badges.lncd.lincoln.ac.uk/signin&scope=user.basic,user.contact&state=1471">Login</a>></li>
+								<li><a href="https://sso.lincoln.ac.uk/oauth?response_type=code&client_id=Q2yb5BchO98w9jYaWw4862BBG6zW4jKY&redirect_uri=http://badges.lncd.lincoln.ac.uk/signin&scope=user.basic,user.contact&state=1471">Login</a></li>
 							<?php endif; ?>
 							
 						</ul>

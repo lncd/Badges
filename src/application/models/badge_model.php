@@ -132,6 +132,25 @@ class Badge_model extends CI_Model
 
 		return $returning;
 	}
+
+	/**
+	* Mark a badge as claimed
+	*
+	* @param int $instance_id Instance ID to mark as claimed.
+	*
+	* @access Public
+	* @return Success state
+	*/
+	public function complete_claim_process($instance_id)
+	{
+		$badge_earned = new Badge_earned();
+		$badge_earned->where('id', (int) $instance_id)->get();
+
+		$badge_earned->claimed = 1;
+		$badge_earned->save();
+
+		return TRUE;
+	}
 }
 
 // End of file badge_model.php

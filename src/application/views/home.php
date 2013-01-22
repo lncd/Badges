@@ -10,7 +10,12 @@
 
 	<div class="row">
 		<section class="span12" id="badges_waiting">
-			<h2>Badges to be Collected</h2>
+			<?php if($this->session->flashdata('success')): ?>
+				<div class="alert alert-success"><?php echo $this->session->flashdata('success'); ?></div>
+			<?php elseif($this->session->flashdata('failure')): ?>
+				<div class="alert alert-error"><?php echo $this->session->flashdata('failure'); ?></div>
+			<?php endif; ?>
+		<h2>Badges to be Collected</h2>
 			<div style="min-height: 100px">
 			<?php if((isset($unawarded)) AND (sizeof($unawarded) > 0)): ?>
 			<table class="table table-striped table-bordered table-condensed">

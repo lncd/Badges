@@ -38,6 +38,29 @@ class Claim extends CI_Controller {
 		$this->load->view('includes/footer');
 		
 	}
+
+	/**
+	* Completes the claim process
+	*
+	* @param int $instance_id ID of the badge instance to mark as claimed.
+	*
+	* @return Nothing
+	* @access Public
+	*/
+	public function complete($instance_id)
+	{
+		$this->load->model('badge_model');
+		if($this->badge_model->complete_claim_process($instance_id))
+		{
+			$this->session->set_flashdata('success', 'Badge claimed successfully.');
+		}
+		else
+		{
+			$this->session->set_flashdata('failure', 'Something went wrong!');
+		}
+		redirect(site_url() . 'home', 'location');
+	}
+
 }
 
 // End of file claim.php

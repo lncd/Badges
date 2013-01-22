@@ -146,7 +146,7 @@ class Badge_model extends CI_Model
 		$badge_earned = new Badge_earned();
 		$badge_earned->where('id', (int) $instance_id)->get();
 
-		$badge_earned->claimed = 1;
+		$badge_earned->awarded = 1;
 		$badge_earned->save();
 
 		return TRUE;

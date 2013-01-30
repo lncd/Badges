@@ -62,7 +62,7 @@ class User_model extends CI_Model
 	function get_user_awarded_badges($id)
 	{
 		$badges = new Badge_earned();
-		$badges->where('user_id', 1);
+		$badges->where('user_id', $this->session->userdata('id'));
 		$badges->where('awarded', 1);
 		$badges->get();
 
@@ -94,7 +94,7 @@ class User_model extends CI_Model
 	function get_user_unawarded_badges($id)
 	{
 		$badges = new Badge_earned();
-		$badges->where('user_id', 1);
+		$badges->where('user_id', $this->session->userdata('user_id'));
 		$badges->where('awarded', 0);
 		$badges->get();
 
@@ -147,7 +147,7 @@ class User_model extends CI_Model
 			foreach($query->result() as $result)
 			{
 				$badges_earned = new Badge_earned();
-				$badges_earned->where('user_id', $id);
+				$badges_earned->where('user_id', $this->session->userdata('user_id'));
 				$badges_earned->where('badge_id', $result->badge_id);
 
 				$count = $badges_earned->count();
